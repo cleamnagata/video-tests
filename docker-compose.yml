@@ -1,0 +1,12 @@
+version: '2'
+services:
+  static:
+    build: .
+    container_name: audio-test
+    ports:
+      - "1001:8080"
+    volumes:
+      - .:/var/www
+      - ./assets:/var/www/dist/assets
+      - ./api_mock:/var/www/dist/api_mock
+      - /var/www/node_modules

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no"/>
+	<meta name="apple-mobile-web-app-capable" content="yes"/>
+	<title>docker-js-template</title>
+	<style>
+		body {
+			background-color: #000000;
+		}
+	</style>
+</head>
+<body>
+<%
+// query string 生成用の文字列(git の最終 commit hash を取得して、version として使用する)
+// TODO: webpack config から注入したほうが良いか？
+//var versionHash = require('child_process').execSync('git rev-parse HEAD').toString().trim();
+var versionHash = 12345;
+%>
+<% _.each(htmlWebpackPlugin.files.chunks, function(hash) { %>
+<script src="<%= hash.entry %>?=<%= versionHash %>"></script>
+<% }); %>
+</body>
+</html>
