@@ -41,6 +41,7 @@
     "pixi.js": "^4.4.2",
     "uglify-save-license": "^0.4.1",
     "video.js": "^5.18.4",
+    "videojs-contrib-hls": "^5.3.3",
     "webpack": "^1.13.1",
     "webpack-dev-server": "^1.14.1"
   }
