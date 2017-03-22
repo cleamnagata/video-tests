@@ -2,7 +2,7 @@ version: '2'
 services:
   static:
     build: .
-    container_name: audio-test
+    container_name: video-tests
     ports:
       - "1001:8080"
     volumes:
