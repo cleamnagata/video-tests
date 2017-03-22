@@ -1,4 +1,8 @@
 /**
+ * @description
+ *   video.js を使用した、MPEG-DASH 形式の動画再生サンプル
+ *   http://qiita.com/gabby-gred/items/c1a3dbe026f83dd7e1ff
+ *
  * @class VideoDashScene
  */
 export default

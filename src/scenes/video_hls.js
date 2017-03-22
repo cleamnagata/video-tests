@@ -2,6 +2,9 @@
 //require('videojs-contrib-hls');
 
 /**
+ * @description
+ *   video.js を使用した、HLS での動画再生サンプル
+ *
  * @class VideoHlsScene
  */
 export default
