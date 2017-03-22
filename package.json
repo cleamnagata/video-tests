@@ -38,6 +38,7 @@
     "expose-loader": "^0.7.1",
     "html-webpack-plugin": "^2.22.0",
     "jsdoc": "^3.4.3",
+    "pixi.js": "^4.4.2",
     "uglify-save-license": "^0.4.1",
     "video.js": "^5.18.4",
     "webpack": "^1.13.1",

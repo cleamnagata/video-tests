@@ -1,3 +1,4 @@
+require('pixi.js');
 import page from 'page'; // SPA module
 import routes from 'config/routes';
 import _ from 'underscore';

@@ -6,10 +6,17 @@ import videojs from 'video.js';
 export default
 class VideoJsScene {
   constructor(params) {
-    console.log(params);
+    console.log('VideoJsScene');
+    this._init();
+    window.curent = this;
+  }
+
+  /**
+   * @private
+   */
+  _init() {
     this._createVideoElements();
     this._createPlayer();
-    window.curent = this;
   }
 
   /**
@@ -17,7 +24,9 @@ class VideoJsScene {
    * @private
    */
   _createPlayer() {
-    this.player = videojs('example_video_1');
+    this.player = videojs('example_video_1', {}, function onPlayerReady() {
+      this.play();
+    });
   }
 
   /**
@@ -38,16 +47,8 @@ class VideoJsScene {
       source.src = `http://vjs.zencdn.net/v/oceans.${type}`;
       video.appendChild(source);
     });
+    this.videoElement = video;
     document.body.appendChild(video);
-    let started = false;
-    let self = this;
-    video.onclick = function() {
-      if (started) {
-        return;
-      }
-      started = true;
-      self.player.play();
-    };
   }
 
   /**

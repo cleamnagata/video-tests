@@ -1,3 +1,5 @@
 export default [
-  'videojs'
+  'top',
+  'videojs',
+  'video_canvas'
 ];
