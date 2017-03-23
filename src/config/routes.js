@@ -3,5 +3,6 @@ export default [
   'videojs',
   'video_canvas',
   'video_hls',
-  'video_dash'
+  'video_dash',
+  'video/hls/canvas'
 ];
