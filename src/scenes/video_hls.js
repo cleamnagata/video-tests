@@ -40,6 +40,8 @@ class VideoHlsScene {
     const video = document.createElement('video');
     video.id = 'example-video';
     video.className = 'video-js vjs-default-skin';
+    // ios 10 以上であれば、これで inline 再生可能
+    video.setAttribute('playsinline', '');
     video.width = 600;
     video.height = 300;
     const source = document.createElement('source');
