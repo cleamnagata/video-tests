@@ -1,8 +1,8 @@
-import VideoDashScene from 'scenes/video_dash';
+import VideoDashScene from 'scenes/video/dash';
 import init from 'init';
 
 export default {
-  '/video_dash': function() {
+  '/video/dash': function() {
     init(VideoDashScene, {}, []);
   }
 };

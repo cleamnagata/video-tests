@@ -29,7 +29,7 @@ class VideoDashScene {
     var player = videojs('example-dash-video');
     player.ready(function() {
       player.src({
-        src: 'assets/video/mp4/discover/dash/discoverypartIIjonathanmitchellmp4_dash.mpd',
+        src: '/assets/video/mp4/discover/dash/discoverypartIIjonathanmitchellmp4_dash.mpd',
         type: 'application/dash+xml'
       });
       player.play();

@@ -1,8 +1,8 @@
 export default [
   'top',
   'videojs',
-  'video_canvas',
-  'video_hls',
-  'video_dash',
+  'video/canvas',
+  'video/hls',
+  'video/dash',
   'video/hls/canvas'
 ];

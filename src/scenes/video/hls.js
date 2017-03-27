@@ -46,7 +46,7 @@ class VideoHlsScene {
     video.height = 300;
     const source = document.createElement('source');
     source.type = 'application/x-mpegURL';
-    source.src = 'assets/video/mp4/discover/stream/playlist.m3u8';
+    source.src = '/assets/video/mp4/discover/stream/playlist.m3u8';
     video.appendChild(source);
     this.videoElement = video;
     document.body.appendChild(video);

@@ -1,8 +1,8 @@
-import VideoHlsScene from 'scenes/video_hls';
+import VideoHlsScene from 'scenes/video/hls';
 import init from 'init';
 
 export default {
-  '/video_hls': function() {
+  '/video/hls': function() {
     init(VideoHlsScene, {}, []);
   }
 };

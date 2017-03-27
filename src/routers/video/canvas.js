@@ -1,8 +1,8 @@
-import VideoCanvasScene from 'scenes/video_canvas';
+import VideoCanvasScene from 'scenes/video/canvas';
 import init from 'init';
 
 export default {
-  '/video_canvas': function() {
+  '/video/canvas': function() {
     init(VideoCanvasScene, {}, []);
   }
 };
