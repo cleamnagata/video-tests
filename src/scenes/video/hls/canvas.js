@@ -5,6 +5,7 @@
  * @description
  *   video.js を使用した、HLS での動画再生サンプル
  *   canvas での inline 再生を行う
+ *   iOS 10 以上、android は対応可能
  *
  * @class VideoHlsCanvasScene
  */
@@ -12,8 +13,11 @@ export default
 class VideoHlsCanvasScene {
   constructor(params) {
     console.log('VideoHlsCanvasScene');
+    window.currentScene = this;
+    this._canvasWidth = 320;
+    this._canvasHeight = 240;
+    this._timerId = null;
     this._init();
-    window.curent = this;
   }
 
   /**
@@ -32,6 +36,8 @@ class VideoHlsCanvasScene {
     var canvas = document.createElement('canvas');
     document.body.appendChild(canvas);
     this.canvas = canvas;
+    this.canvas.width = this._canvasWidth;
+    this.canvas.height = this._canvasHeight;
     this.ctx = canvas.getContext('2d');
   }
 
@@ -40,15 +46,36 @@ class VideoHlsCanvasScene {
    * @private
    */
   _createPlayer() {
-    //this.player = videojs(this.video);
+    var self = this;
     this.player = videojs('example-video');
-    console.log(this.player);
-    // TODO: FIX
-    //this.player.ready(function() {
-    //  console.log('ready');
-    //});
-    //this.player.play();
-    //this.video.currentTime += 1000/app.fps/1000;
+    this.player.src({
+      src: '/assets/video/mp4/dolphin/stream/playlist.m3u8',
+      type: 'application/x-mpegURL'
+    });
+    this.player.ready(function() {
+      self._drawCanvas();
+    });
+    this.canvas.onclick = function() {
+      self.player.play();
+    };
+  }
+
+  /**
+   * @private
+   */
+  _drawCanvas() {
+    const ctx = this.ctx;
+    const video = this.video;
+    const w = this._canvasWidth;
+    const h = this._canvasHeight;
+
+    function drawVideo() {
+      ctx.drawImage(video, 0, 0, w, h);
+    }
+
+    this._timerId = setInterval(function() {
+      drawVideo();
+    }, 1000 / 30);
   }
 
   /**
@@ -61,12 +88,9 @@ class VideoHlsCanvasScene {
     video.className = 'video-js vjs-default-skin';
     // ios 10 以上であれば、これで inline 再生可能
     video.setAttribute('playsinline', '');
-    video.width = 600;
-    video.height = 300;
-    const source = document.createElement('source');
-    source.type = 'application/x-mpegURL';
-    source.src = '/assets/video/mp4/discover/stream/playlist.m3u8';
-    video.appendChild(source);
+    video.style.visibility = 'hidden';
+    video.style.width = this._canvasWidth;
+    video.style.height = this._canvasHeight;
     this.video = video;
     document.body.appendChild(video);
   }
