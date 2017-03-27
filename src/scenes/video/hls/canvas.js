@@ -6,7 +6,9 @@
  *   video.js を使用した、HLS での動画再生サンプル
  *   canvas での inline 再生を行う
  *   iOS 10 以上、android は対応可能
- *
+ *   webview であれば webkit-playsinline で10未満も対応可能
+ *     正確には allowsInlineMediaPlaybackプロパティがYESに設定されている (UIWebViewでのみ有効になっている)
+ *     モバイルSafariではこれがiPadでYES、iPhoneおよびiPod TouchでNOである
  * @class VideoHlsCanvasScene
  */
 export default
