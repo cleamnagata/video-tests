@@ -24,9 +24,21 @@ class VideoHlsCanvasScene {
    * @private
    */
   _init() {
+    const ua = window.navigator.userAgent;
+    const isIPad = (/iPad/i).test(ua);
+    const isIPhone = (/iPhone/i).test(ua) && !isIPad;
+    const isIPod = (/iPod/i).test(ua);
+    const isIOs = isIPad || isIPhone || isIPod;
+
     this._createCanvas();
-    this._createVideoElements();
-    this._createPlayer();
+
+    if (isIPhone) {
+      this._iOSTest();
+    }
+    else {
+      this._createVideoElements();
+      this._createPlayer();
+    }
   }
 
   /**
@@ -39,6 +51,27 @@ class VideoHlsCanvasScene {
     this.canvas.width = this._canvasWidth;
     this.canvas.height = this._canvasHeight;
     this.ctx = canvas.getContext('2d');
+  }
+
+  /**
+   * @private
+   */
+  _iOSTest() {
+    const video = document.createElement('video');
+    // ios 10 以上であれば、これで inline 再生可能
+    video.setAttribute('playsinline', '');
+    video.style.visibility = 'hidden';
+    document.body.appendChild(video);
+    video.src = '/assets/video/mp4/dolphin/stream/playlist.m3u8';
+    video.addEventListener('canplaythrough', function() {
+
+    }, false);
+    this.video = video;
+    var self = this;
+    this.canvas.onclick = function() {
+      video.play();
+      self._drawCanvas();
+    };
   }
 
   /**
@@ -66,11 +99,9 @@ class VideoHlsCanvasScene {
   _drawCanvas() {
     const ctx = this.ctx;
     const video = this.video;
-    const w = this._canvasWidth;
-    const h = this._canvasHeight;
 
     function drawVideo() {
-      ctx.drawImage(video, 0, 0, w, h);
+      ctx.drawImage(video, 0, 0);
     }
 
     this._timerId = setInterval(function() {
@@ -86,11 +117,9 @@ class VideoHlsCanvasScene {
     const video = document.createElement('video');
     video.id = 'example-video';
     video.className = 'video-js vjs-default-skin';
-    // ios 10 以上であれば、これで inline 再生可能
-    video.setAttribute('playsinline', '');
     video.style.visibility = 'hidden';
-    video.style.width = this._canvasWidth;
-    video.style.height = this._canvasHeight;
+    video.style.width = this._canvasWidth + 'px';
+    video.style.height = this._canvasHeight + 'px';
     this.video = video;
     document.body.appendChild(video);
   }
